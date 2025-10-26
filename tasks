@@ -1,0 +1,14 @@
+Main Task (maintask)
+    * - опционально
+
+    №1
+        сделать 2 кастомные библиотеки для TOML и ROM
+
+        SPtoml
+        SProm
+        SPhtml*
+
+        для парсинга из TOML в ROM
+
+    №2
+        написать БНФ для HTML* и TOML
