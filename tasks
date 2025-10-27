@@ -5,10 +5,10 @@ Main Task (maintask)
         сделать 2 кастомные библиотеки для TOML и ROM
 
         SPtoml
-        SProm
+        SPron
         SPhtml*
 
-        для парсинга из TOML в ROM
+        для парсинга из TOML в RON
 
     №2
         написать БНФ для HTML* и TOML
