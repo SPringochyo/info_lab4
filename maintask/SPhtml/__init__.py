@@ -27,8 +27,8 @@ WHITESPACES = [" ", "\t", "\b", "\n", "\r"]
 
 class HTML:
 
-    FILE_NAME = ""
-    MAIN_STR = ""
+    # FILE_NAME = ""
+    # MAIN_STR = ""
     indexofsearch = 0
 
 
@@ -66,59 +66,59 @@ class HTML:
         return rez
 
     #                                                        ПЕРЕПИСАТЬ!!!
-    # def _tag_close(self, string : str) -> list:
+    def _tag_close(self, string : str) -> list:
+    
+        opentag = self._tag_open(string)
+        closetag = ""
+        content = ""
+        rez = opentag
+        flag = 1
 
-    #     opentag = self._tag_open(string)
-    #     closetag = ""
-    #     content = ""
-    #     rez = opentag
-    #     flag = 1
+        if ("<" + opentag[1]) in string[:]:
+            if string[:].find("<" + opentag[1]) < string[:].find("</" + opentag[1] + ">"):
+                tmp = []
+                for i in string[:].split("<" + opentag[1]):
+                    if ("</" + opentag[1] + ">") in i:
+                        tmp2 = i.split("</" + opentag[1] + ">")
+                        for j in tmp2:
+                            tmp.append(j)
+                            tmp.append("</" + opentag[1] + ">")
+                    else:
+                        tmp.append(i)
+                    tmp.append("<" + opentag[1])
+                del tmp[-1]
 
-    #     if ("<" + opentag[1]) in string[:]:
-    #         if string[:].find("<" + opentag[1]) < string[:].find("</" + opentag[1] + ">"):
-    #             tmp = []
-    #             for i in string[:].split("<" + opentag[1]):
-    #                 if ("</" + opentag[1] + ">") in i:
-    #                     tmp2 = i.split("</" + opentag[1] + ">")
-    #                     for j in tmp2:
-    #                         tmp.append(j)
-    #                         tmp.append("</" + opentag[1] + ">")
-    #                 else:
-    #                     tmp.append(i)
-    #                 tmp.append("<" + opentag[1])
-    #             del tmp[-1]
+                ln = 0
 
-    #             ln = 0
+                for i in tmp:
+                    if i == ("<" + opentag[1] + ">"):
+                        flag += 1
+                    elif i == ("</" + opentag[1] + ">"):
+                        flag -= 1
 
-    #             for i in tmp:
-    #                 if i == ("<" + opentag[1] + ">"):
-    #                     flag += 1
-    #                 elif i == ("</" + opentag[1] + ">"):
-    #                     flag -= 1
+                    if flag == 0:
+                        n = ln + 0
+                        break
+                    else:
+                        ln += len(i)
 
-    #                 if flag == 0:
-    #                     n = ln + 0
-    #                     break
-    #                 else:
-    #                     ln += len(i)
+            else:
+                n = string.find("</" + opentag[1] + ">")
+        else:
+            n = string.find("</" + opentag[1] + ">")
 
-    #         else:
-    #             n = string.find("</" + opentag[1] + ">")
-    #     else:
-    #         n = string.find("</" + opentag[1] + ">")
+        if string[n:]:
+            for i in range(len(string[n:])):
+                if string[n:][i] == '>':
+                    closetag = string[n:][: i+1]
+                    break
 
-    #     if string[n:]:
-    #         for i in range(len(string[n:])):
-    #             if string[n:][i] == '>':
-    #                 closetag = string[n:][: i+1]
-    #                 break
+        content = string[opentag[0] : n]
 
-    #     content = string[opentag[0] : n]
+        rez.append(content)
+        self.indexofsearch += (n + len(closetag))
 
-    #     rez.append(content)
-    #     self.indexofsearch += (n + len(closetag))
-
-    #     return rez[1:]
+        return rez[1:]
 
 
     def _parse(self) -> list:
@@ -135,12 +135,3 @@ class HTML:
             rez[tmp[0]] = tmp[1:]
 
         return rez
-
-
-In = HTML("index.html")
-print(In.indexofsearch)
-print(In._parse())
-print(In.indexofsearch)
-print(In._parse())
-print(In.indexofsearch)
-print(In._parse())
