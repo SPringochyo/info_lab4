@@ -1,76 +1,25 @@
-# t = "abcdef"
+# tag-open := '<' tag-name ws* attr-list? ws* '>'
+# tag-empty := '<' tag-name ws* attr-list? ws* '/>'
+# tag-close := '</' tag-name ws* '>'
 
-# m = 5
+# attr-list := (ws+ attr)*
+# attr := attr-empty | attr-unquoted | attr-single-quoted | attr-double-quoted
 
-# for i in range(len(t) - m):
-#     print(t[i:i+m+1])
+# attr-empty := attr-name
+# attr-unquoted := attr-name ws* = ws* attr-unquoted-value
+# attr-single-quoted := attr-name ws* = ws* ' attr-single-quoted-value '
+# attr-double-quoted := attr-name ws* = ws* " attr-double-quoted-value "
 
-from maintask.SPhtml import *
+# tag-name := (alphabets | digits)+                      # Can digits become first letter?
+# attr-name := /[^\s"'>/=\p{Control}]+/
 
-T = HTML("test.html")
+# # These three items should not contain 'ambiguous ampersand'...
+# attr-unquoted-value := /[^\s"'=<>`]+/
+# attr-single-quoted-value := /[^']*/
+# attr-double-quoted-value := /[^"]*/
 
-MSTR = T.MAIN_STR
+# alphabets := /[a-zA-Z]/
+# digits := /[0-9]/
+# ws := /\s/
 
-def tag_open(string : str) -> list:
-
-    opentag = ""
-    rez = []
-
-    if string:
-        if string[0] == '<':
-            for i in range(len(string)):
-                if string[i] == '>':
-                    opentag = string[: i+1]
-                    break
-
-    tagdata = opentag[1:-1].split()
-
-    rez.append(i + 1)
-    rez.append(dict())
-
-    rez[1]["tagname"] = tagdata[0]
-    rez[1]["tagattrs"] = tagdata[1:]
-
-    return rez
-
-def tag_close(string : str) -> dict:
-    opentag = tag_open(string)
-    tagname = opentag[1]["tagname"]
-
-    string = string[opentag[0]:]
-    ln = len(tagname) + 2
-
-    i = cutstr(string, ln, tagname)
-
-    if len(string) > len(string[:i]):
-        content = [string[:i]]
-    content = string[:i]
-
-    if "</" not in content:
-        opentag[1]["content"] = content
-        return opentag[1]
-
-    else:
-        opentag[1]["innertags"] = tag_close(content)
-        return opentag[1]
-
-
-def cutstr(string : str, ln : int, tagname : str) -> int:
-
-    flag = 1
-
-    for i in range(len(string) - ln):
-        str = string[i:i+ln+1]
-
-        if str[:-2] == ("<" + tagname):
-            flag += 1
-        elif str == ("</" + tagname + ">"):
-            flag -= 1
-
-        if flag == 0:
-            break
-
-    return i
-
-
-print(tag_close(MSTR))
+WHITESPACES = [" ", "\t", "\b", "\n", "\r"]

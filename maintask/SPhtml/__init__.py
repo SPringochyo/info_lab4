@@ -1,51 +1,19 @@
-# tag-open := '<' tag-name ws* attr-list? ws* '>'
-# tag-empty := '<' tag-name ws* attr-list? ws* '/>'
-# tag-close := '</' tag-name ws* '>'
-
-# attr-list := (ws+ attr)*
-# attr := attr-empty | attr-unquoted | attr-single-quoted | attr-double-quoted
-
-# attr-empty := attr-name
-# attr-unquoted := attr-name ws* = ws* attr-unquoted-value
-# attr-single-quoted := attr-name ws* = ws* ' attr-single-quoted-value '
-# attr-double-quoted := attr-name ws* = ws* " attr-double-quoted-value "
-
-# tag-name := (alphabets | digits)+                      # Can digits become first letter?
-# attr-name := /[^\s"'>/=\p{Control}]+/
-
-# # These three items should not contain 'ambiguous ampersand'...
-# attr-unquoted-value := /[^\s"'=<>`]+/
-# attr-single-quoted-value := /[^']*/
-# attr-double-quoted-value := /[^"]*/
-
-# alphabets := /[a-zA-Z]/
-# digits := /[0-9]/
-# ws := /\s/
-
-WHITESPACES = [" ", "\t", "\b", "\n", "\r"]
-
-
 class HTML:
-
-    # FILE_NAME = ""
-    # MAIN_STR = ""
-    indexofsearch = 0
-
 
     def __init__(self, filename: str) -> None:
         self.FILE_NAME = filename
-        self.MAIN_STR = self._to_string()
+        self.MAIN_STRING = self._convert_to_string()
 
 
-    def _to_string(self) -> str:
+    def _convert_to_string(self) -> str:
         file = open(self.FILE_NAME, "r")
         string = [s.strip() for s in file.readlines()]
-        rez = ''.join(string)
+        templatestring = ''.join(string)
 
-        return rez
+        return templatestring
 
 
-    def _cutstr(self, string : str) -> list:
+    def _split_the_string(self, string : str) -> list[str]:
 
         strings = []
 
@@ -61,16 +29,16 @@ class HTML:
 
                 tagdata = opentag[1:-1].split()
                 tagname = tagdata[0]
-                opentagend = i + 1
+                indexofopentagend = i + 1
 
-                tmpstr = string[opentagend:]
-                ln = len(tagname) + 2
+                tmpstr = string[indexofopentagend:]
+                lengthofclosetag = len(tagname) + 2
 
-                beforeclosetag = self._tagclosefind(tmpstr, ln, tagname)
+                indexbeforeclosetag = self._find_tag_closure(tmpstr, lengthofclosetag, tagname)
 
-                strings.append(string[:opentagend + beforeclosetag + ln + 1])
+                strings.append(string[:indexofopentagend + indexbeforeclosetag + lengthofclosetag + 1])
 
-                string = string[opentagend + beforeclosetag + ln + 1:]
+                string = string[indexofopentagend + indexbeforeclosetag + lengthofclosetag + 1:]
 
             else:
                 if "</" in string:
@@ -83,28 +51,30 @@ class HTML:
         return strings
 
 
-    def _tagclosefind(self, string : str, ln : int, tagname : str) -> int:
+    def _find_tag_closure(self, string : str, lengthofclosetag : int, tagname : str) -> int:
 
         flag = 1
 
-        for i in range(len(string) - ln):
-            str = string[i:i+ln+1]
+        for i in range(len(string) - lengthofclosetag):
+            substring = string[i:i+lengthofclosetag+1]
 
-            if str[:-2] == ("<" + tagname):
+            if substring[:-2] == ("<" + tagname):
                 flag += 1
-            elif str == ("</" + tagname + ">"):
+            elif substring == ("</" + tagname + ">"):
                 flag -= 1
 
             if flag == 0:
                 break
 
-        return i
+        indexoftagclosure = i
+
+        return indexoftagclosure
 
 
-    def _tag_open(self, string : str) -> list:
+    def _find_tag_opening(self, string : str) -> list:
 
         opentag = ""
-        rez = []
+        basictaginfo = []
 
         if string:
             if string[0] == '<':
@@ -113,48 +83,50 @@ class HTML:
                         opentag = string[: i+1]
                         break
 
+        indexofendopentag = i + 1
+
         tagdata = opentag[1:-1].split()
 
-        rez.append(i + 1)
-        rez.append(dict())
+        basictaginfo.append(indexofendopentag)
+        basictaginfo.append(dict())
 
-        rez[1]["tagname"] = tagdata[0]
-        rez[1]["tagattrs"] = tagdata[1:]
+        basictaginfo[1]["TAG_NAME"] = tagdata[0]
+        basictaginfo[1]["TAG_ATTRS"] = tagdata[1:]
 
-        return rez
+        return basictaginfo
 
-    def _tag_close(self, string : str) -> dict:
-        if "</" not in string:
-            return string
+    def _parse_tag_info(self, string : str) -> dict:    # dict/str
 
-        opentag = self._tag_open(string)
-        tagname = opentag[1]["tagname"]
+        if "</" not in string: return string
+
+        opentag = self._find_tag_opening(string)
+
+        tagname = opentag[1]["TAG_NAME"]
 
         string = string[opentag[0]:]
-        ln = len(tagname) + 2
+        lengthofclosetag = len(tagname) + 2
+        indexbeforeclosetag = self._find_tag_closure(string, lengthofclosetag, tagname)
+        content = string[:indexbeforeclosetag]
 
-        i = self._tagclosefind(string, ln, tagname)
+        opentag[1]["CONTENT"] = self._dump(content)
 
-        content = string[:i]
-
-        opentag[1]["content"] = self._parse(content)
         return opentag[1]
 
 
-    def _parse(self, string : str) -> list:
-        rez = []
+    def _dump(self, string : str) -> list[dict, str]:
+        listoftags = []
 
-        for str in self._cutstr(string):
-            rez.append(self._tag_close(str))
+        for substring in self._split_the_string(string):
+            listoftags.append(self._parse_tag_info(substring))
 
-        return rez
+        return listoftags
 
-    def parse(self) -> list:
-        rez = []
+    def parse(self) -> list[dict]:
+        rootlistoftags = []
 
-        string = self.MAIN_STR
+        string = self.MAIN_STRING[:]
 
-        for str in self._cutstr(string):
-            rez.append(self._tag_close(str))
+        for substring in self._split_the_string(string):
+            rootlistoftags.append(self._parse_tag_info(substring))
 
-        return rez
+        return rootlistoftags
