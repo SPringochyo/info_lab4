@@ -26,7 +26,6 @@ def tag_open(string : str) -> list:
     tagdata = opentag[1:-1].split()
 
     rez.append(i + 1)
-
     rez.append(dict())
 
     rez[1]["tagname"] = tagdata[0]
@@ -34,13 +33,31 @@ def tag_open(string : str) -> list:
 
     return rez
 
-def tag_close(string : str) -> list:
+def tag_close(string : str) -> dict:
     opentag = tag_open(string)
     tagname = opentag[1]["tagname"]
-    flag = 1
 
     string = string[opentag[0]:]
     ln = len(tagname) + 2
+
+    i = cutstr(string, ln, tagname)
+
+    if len(string) > len(string[:i]):
+        content = [string[:i]]
+    content = string[:i]
+
+    if "</" not in content:
+        opentag[1]["content"] = content
+        return opentag[1]
+
+    else:
+        opentag[1]["innertags"] = tag_close(content)
+        return opentag[1]
+
+
+def cutstr(string : str, ln : int, tagname : str) -> int:
+
+    flag = 1
 
     for i in range(len(string) - ln):
         str = string[i:i+ln+1]
@@ -53,14 +70,7 @@ def tag_close(string : str) -> list:
         if flag == 0:
             break
 
-    content = string[:i]
+    return i
 
-    if "</" not in content:
-        opentag[1]["content"] = content
-        return opentag[1]
-
-    else:
-        opentag[1]["innertag"] = tag_close(content)
-        return opentag[1]
 
 print(tag_close(MSTR))

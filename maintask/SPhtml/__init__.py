@@ -45,6 +45,62 @@ class HTML:
         return rez
 
 
+    def _cutstr(self, string : str) -> list:
+
+        strings = []
+
+        while string:
+
+            opentag = ""
+
+            if string[0] == '<':
+                for i in range(len(string)):
+                    if string[i] == '>':
+                        opentag = string[: i+1]
+                        break
+
+                tagdata = opentag[1:-1].split()
+                tagname = tagdata[0]
+                opentagend = i + 1
+
+                tmpstr = string[opentagend:]
+                ln = len(tagname) + 2
+
+                beforeclosetag = self._tagclosefind(tmpstr, ln, tagname)
+
+                strings.append(string[:opentagend + beforeclosetag + ln + 1])
+
+                string = string[opentagend + beforeclosetag + ln + 1:]
+
+            else:
+                if "</" in string:
+                    strings.append(string[:string.find("<")])
+                    string = string[string.find("<"):]
+                else:
+                    strings.append(string)
+                    string = ""
+
+        return strings
+
+
+    def _tagclosefind(self, string : str, ln : int, tagname : str) -> int:
+
+        flag = 1
+
+        for i in range(len(string) - ln):
+            str = string[i:i+ln+1]
+
+            if str[:-2] == ("<" + tagname):
+                flag += 1
+            elif str == ("</" + tagname + ">"):
+                flag -= 1
+
+            if flag == 0:
+                break
+
+        return i
+
+
     def _tag_open(self, string : str) -> list:
 
         opentag = ""
@@ -60,78 +116,45 @@ class HTML:
         tagdata = opentag[1:-1].split()
 
         rez.append(i + 1)
-        rez.append(tagdata[0])
-        rez.append(tagdata[1:])
+        rez.append(dict())
+
+        rez[1]["tagname"] = tagdata[0]
+        rez[1]["tagattrs"] = tagdata[1:]
 
         return rez
 
-    #                                                        ПЕРЕПИСАТЬ!!!
-    def _tag_close(self, string : str) -> list:
-    
+    def _tag_close(self, string : str) -> dict:
+        if "</" not in string:
+            return string
+
         opentag = self._tag_open(string)
-        closetag = ""
-        content = ""
-        rez = opentag
-        flag = 1
+        tagname = opentag[1]["tagname"]
 
-        if ("<" + opentag[1]) in string[:]:
-            if string[:].find("<" + opentag[1]) < string[:].find("</" + opentag[1] + ">"):
-                tmp = []
-                for i in string[:].split("<" + opentag[1]):
-                    if ("</" + opentag[1] + ">") in i:
-                        tmp2 = i.split("</" + opentag[1] + ">")
-                        for j in tmp2:
-                            tmp.append(j)
-                            tmp.append("</" + opentag[1] + ">")
-                    else:
-                        tmp.append(i)
-                    tmp.append("<" + opentag[1])
-                del tmp[-1]
+        string = string[opentag[0]:]
+        ln = len(tagname) + 2
 
-                ln = 0
+        i = self._tagclosefind(string, ln, tagname)
 
-                for i in tmp:
-                    if i == ("<" + opentag[1] + ">"):
-                        flag += 1
-                    elif i == ("</" + opentag[1] + ">"):
-                        flag -= 1
+        content = string[:i]
 
-                    if flag == 0:
-                        n = ln + 0
-                        break
-                    else:
-                        ln += len(i)
-
-            else:
-                n = string.find("</" + opentag[1] + ">")
-        else:
-            n = string.find("</" + opentag[1] + ">")
-
-        if string[n:]:
-            for i in range(len(string[n:])):
-                if string[n:][i] == '>':
-                    closetag = string[n:][: i+1]
-                    break
-
-        content = string[opentag[0] : n]
-
-        rez.append(content)
-        self.indexofsearch += (n + len(closetag))
-
-        return rez[1:]
+        opentag[1]["content"] = self._parse(content)
+        return opentag[1]
 
 
-    def _parse(self) -> list:
-        string = self.MAIN_STR[self.indexofsearch:]
-        return self._tag_close(string)
+    def _parse(self, string : str) -> list:
+        rez = []
 
+        for str in self._cutstr(string):
+            rez.append(self._tag_close(str))
 
-    def dump(self) -> dict:
+        return rez
 
-        rez = {}
+    def parse(self) -> list:
+        rez = []
 
-        while self.MAIN_STR[self.indexofsearch:]:
-            tmp = self._parse()
-            rez[tmp[0]] = tmp[1:]
+        string = self.MAIN_STR
+
+        for str in self._cutstr(string):
+            rez.append(self._tag_close(str))
 
         return rez

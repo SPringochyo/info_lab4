@@ -1,9 +1,5 @@
-import SPhtml as html
+from SPhtml import HTML as html
 
-In = html.HTML("index.html")
-print(In.indexofsearch)
-print(In._parse())
-print(In.indexofsearch)
-print(In._parse())
-print(In.indexofsearch)
-print(In._parse())
+In = html("index.html")
+
+print(In.parse())
