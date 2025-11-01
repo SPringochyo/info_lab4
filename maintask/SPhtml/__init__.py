@@ -8,9 +8,9 @@ class HTML:
     def _convert_to_string(self) -> str:
         file = open(self.FILE_NAME, "r")
         string = [s.strip() for s in file.readlines()]
-        templatestring = ''.join(string)
+        template_string = ''.join(string)
 
-        return templatestring
+        return template_string
 
 
     def _split_the_string(self, string : str) -> list[str]:
@@ -19,26 +19,26 @@ class HTML:
 
         while string:
 
-            opentag = ""
+            open_tag = ""
 
             if string[0] == '<':
                 for i in range(len(string)):
                     if string[i] == '>':
-                        opentag = string[: i+1]
+                        open_tag = string[: i+1]
                         break
 
-                tagdata = opentag[1:-1].split()
-                tagname = tagdata[0]
-                indexofopentagend = i + 1
+                tag_data = open_tag[1:-1].split()
+                tag_name = tag_data[0]
+                index_of_open_tag_end = i + 1
 
-                tmpstr = string[indexofopentagend:]
-                lengthofclosetag = len(tagname) + 2
+                tmp_string = string[index_of_open_tag_end:]
+                length_of_close_tag = len(tag_name) + 2
 
-                indexbeforeclosetag = self._find_tag_closure(tmpstr, lengthofclosetag, tagname)
+                index_after_close_tag = self._find_tag_closure(tmp_string, length_of_close_tag, tag_name)
 
-                strings.append(string[:indexofopentagend + indexbeforeclosetag + lengthofclosetag + 1])
+                strings.append(string[:index_of_open_tag_end + index_after_close_tag + length_of_close_tag + 1])
 
-                string = string[indexofopentagend + indexbeforeclosetag + lengthofclosetag + 1:]
+                string = string[index_of_open_tag_end + index_after_close_tag + length_of_close_tag + 1:]
 
             else:
                 if "</" in string:
@@ -51,82 +51,82 @@ class HTML:
         return strings
 
 
-    def _find_tag_closure(self, string : str, lengthofclosetag : int, tagname : str) -> int:
+    def _find_tag_closure(self, string : str, length_of_close_tag : int, tag_name : str) -> int:
 
         flag = 1
 
-        for i in range(len(string) - lengthofclosetag):
-            substring = string[i:i+lengthofclosetag+1]
+        for i in range(len(string) - length_of_close_tag):
+            sub_string = string[i:i+length_of_close_tag+1]
 
-            if substring[:-2] == ("<" + tagname):
+            if sub_string[:-2] == ("<" + tag_name):
                 flag += 1
-            elif substring == ("</" + tagname + ">"):
+            elif sub_string == ("</" + tag_name + ">"):
                 flag -= 1
 
             if flag == 0:
                 break
 
-        indexoftagclosure = i
+        index_of_tag_closure = i
 
-        return indexoftagclosure
+        return index_of_tag_closure
 
 
     def _find_tag_opening(self, string : str) -> list:
 
-        opentag = ""
-        basictaginfo = []
+        open_tag = ""
+        basic_tag_info = []
 
         if string:
             if string[0] == '<':
                 for i in range(len(string)):
                     if string[i] == '>':
-                        opentag = string[: i+1]
+                        open_tag = string[: i+1]
                         break
 
-        indexofendopentag = i + 1
+        index_of_end_open_tag = i + 1
 
-        tagdata = opentag[1:-1].split()
+        tag_data = open_tag[1:-1].split()
 
-        basictaginfo.append(indexofendopentag)
-        basictaginfo.append(dict())
+        basic_tag_info.append(index_of_end_open_tag)
+        basic_tag_info.append(dict())
 
-        basictaginfo[1]["TAG_NAME"] = tagdata[0]
-        basictaginfo[1]["TAG_ATTRS"] = tagdata[1:]
+        basic_tag_info[1]["TAG_NAME"] = tag_data[0]
+        basic_tag_info[1]["TAG_ATTRS"] = tag_data[1:]
 
-        return basictaginfo
+        return basic_tag_info
 
     def _parse_tag_info(self, string : str) -> dict:    # dict/str
 
         if "</" not in string: return string
 
-        opentag = self._find_tag_opening(string)
+        open_tag = self._find_tag_opening(string)
 
-        tagname = opentag[1]["TAG_NAME"]
+        tag_name = open_tag[1]["TAG_NAME"]
 
-        string = string[opentag[0]:]
-        lengthofclosetag = len(tagname) + 2
-        indexbeforeclosetag = self._find_tag_closure(string, lengthofclosetag, tagname)
-        content = string[:indexbeforeclosetag]
+        string = string[open_tag[0]:]
+        length_of_close_tag = len(tag_name) + 2
+        index_after_close_tag = self._find_tag_closure(string, length_of_close_tag, tag_name)
+        content = string[:index_after_close_tag]
 
-        opentag[1]["CONTENT"] = self._dump(content)
+        open_tag[1]["CONTENT"] = self._dump(content)
 
-        return opentag[1]
+        return open_tag[1]
 
 
     def _dump(self, string : str) -> list[dict, str]:
-        listoftags = []
+        list_of_tags = []
 
-        for substring in self._split_the_string(string):
-            listoftags.append(self._parse_tag_info(substring))
+        for sub_string in self._split_the_string(string):
+            list_of_tags.append(self._parse_tag_info(sub_string))
 
-        return listoftags
+        return list_of_tags
 
     def parse(self) -> list[dict]:
-        rootlistoftags = []
+        root_list_of_tags = []
 
         string = self.MAIN_STRING[:]
 
-        for substring in self._split_the_string(string):
-            rootlistoftags.append(self._parse_tag_info(substring))
+        for sub_string in self._split_the_string(string):
+            root_list_of_tags.append(self._parse_tag_info(sub_string))
 
-        return rootlistoftags
+        return root_list_of_tags
