@@ -1,5 +1,5 @@
 from SPhtml import HTML
 
-In = HTML("index.html")
+In = HTML("test.html")
 
 print(In.parse())

@@ -1,6 +1,6 @@
 class HTML:
 
-    def __init__(self, filename: str) -> None:
+    def __init__(self, filename: str = "") -> None:
         self.FILE_NAME = filename
         self.MAIN_STRING = self._convert_to_string()
 
@@ -91,9 +91,13 @@ class HTML:
         basic_tag_info.append(dict())
 
         basic_tag_info[1]["TAG_NAME"] = tag_data[0]
-        basic_tag_info[1]["TAG_ATTRS"] = tag_data[1:]
+        basic_tag_info[1]["TAG_ATTRS"] = dict()
+
+        for attr in tag_data[1:]:
+            basic_tag_info[1]["TAG_ATTRS"][attr[:attr.find("=")]] = attr[attr.find("=")+2:-1]
 
         return basic_tag_info
+
 
     def _parse_tag_info(self, string : str) -> dict:    # dict/str
 
@@ -120,6 +124,7 @@ class HTML:
             list_of_tags.append(self._parse_tag_info(sub_string))
 
         return list_of_tags
+
 
     def parse(self) -> list[dict]:
         root_list_of_tags = []
