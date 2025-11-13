@@ -1,5 +1,7 @@
-from SPhtml import HTML
+from SPtoml import TOML
 
-In = HTML("test.html")
+In = TOML("/home/spring/Documents/projects/info_lab4/maintask/index.toml")
 
-print(In.parse())
+In.parse()
+
+print(In.get_obj())
