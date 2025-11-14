@@ -56,6 +56,7 @@ class TOML:
 
 
     def deserialization(self, filename) -> None:
+        filename += ".bin"
         object = self._toml_obj
 
         with open(filename, 'wb') as file:
@@ -63,6 +64,12 @@ class TOML:
             obj_bytes = obj_str.encode('utf-8')
             file.write(len(obj_bytes).to_bytes(8, byteorder='little'))
             file.write(obj_bytes)
+
+
+    def auto_deserialization(self) -> None:
+        filename = self.FILE_NAME[:self.FILE_NAME.rfind(".")]
+        self.parse()
+        self.deserialization(filename)
 
 
     def serialization(filename) -> dict:
