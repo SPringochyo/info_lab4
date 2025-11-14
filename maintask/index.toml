@@ -1,7 +1,7 @@
-[[day_1]]
+[day_1]
 name = "Понедельник"
 
-  [[day_1.lesson_1]]
+  [day_1.lesson_1]
   time_range = "11:30-13:00"
   weeks = "2, 4, 6, 8, 10, 12, 14, 16"
   short_subject = "ИНФОРМ КСиТ 2"
@@ -10,7 +10,7 @@ name = "Понедельник"
   full_subject = "Информатика (Лек) : Актовый зал"
   format = "Очно - дистанционный"
 
-  [[day_1.lesson_2]]
+  [day_1.lesson_2]
   time_range = "11:30-13:00"
   weeks = "2, 4, 6, 8, 10, 12, 14, 16"
   short_subject = "ИНФОРМ СиППО 1"
@@ -19,10 +19,10 @@ name = "Понедельник"
   full_subject = "Информатика (Лек) : Актовый зал"
   format = "Очно - дистанционный"
 
-[[day_2]]
+[day_2]
 name = "Суббота"
 
-  [[day_2.lesson_1]]
+  [day_2.lesson_1]
   time_range = "8:10-9:40"
   weeks = "6, 7, 10, 11, 12, 13, 14, 15"
   short_subject = "PRLCOMP 1"
@@ -31,7 +31,7 @@ name = "Суббота"
   full_subject = "Parallel Computing / Параллельные вычисления (Лек)"
   format = "Очно - дистанционный"
 
-  [[day_2.lesson_2]]
+  [day_2.lesson_2]
   time_range = "9:50-11:20"
   weeks = "6, 7, 10, 11, 12, 13, 14, 15"
   short_subject = "PRLCOMP 1.1"
@@ -40,7 +40,7 @@ name = "Суббота"
   full_subject = "Parallel Computing / Параллельные вычисления (Лаб)"
   format = "Очно - дистанционный"
 
-  [[day_2.lesson_3]]
+  [day_2.lesson_3]
   time_range = "11:30-13:00"
   weeks = "2, 4, 6, 8, 10, 12, 14, 16"
   short_subject = "ИНФОРМ (Р3106) 1.1"
@@ -49,7 +49,7 @@ name = "Суббота"
   full_subject = "Информатика (Лаб)"
   format = "Очно - дистанционный"
 
-  [[day_2.lesson_4]]
+  [day_2.lesson_4]
   time_range = "11:30-13:00"
   weeks = "3, 5, 7, 9, 11, 13, 15, 17"
   short_subject = "ИНФОРМ (Р3107) 1.2"
@@ -58,7 +58,7 @@ name = "Суббота"
   full_subject = "Информатика (Лаб)"
   format = "Очно - дистанционный"
 
-  [[day_2.lesson_5]]
+  [day_2.lesson_5]
   time_range = "13:30-15:00"
   weeks = "2, 4, 6, 8, 10, 12, 14, 16"
   short_subject = "ИНФОРМ (Р3106) 1.1"
@@ -67,7 +67,7 @@ name = "Суббота"
   full_subject = "Информатика (Лаб)"
   format = "Очно - дистанционный"
 
-  [[day_2.lesson_6]]
+  [day_2.lesson_6]
   time_range = "13:30-15:00"
   weeks = "3, 5, 7, 9, 11, 13, 15, 17"
   short_subject = "ИНФОРМ (Р3107) 1.2"

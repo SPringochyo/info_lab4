@@ -10,7 +10,7 @@ class TOML:
     DOT = "."
     END_OF_LINE = "\n"
 
-    toml_obj = dict()
+    _toml_obj = dict()
 
     def __init__(self, filename: str = "") -> None:
         self.FILE_NAME = filename
@@ -30,38 +30,51 @@ class TOML:
 
     def parse(self) -> None:
 
-        command = ""
-
         for string in self.MAIN_LIST[:]:
-            if (string[:2] == self.LEFT_SQARE_BRACKET * 2) and (string[-2:] == self.RIGHT_SQARE_BRACKET * 2):
-                name = "self.toml_obj"
+            if (string[0] == self.LEFT_SQARE_BRACKET) and (string[-1] == self.RIGHT_SQARE_BRACKET):
+                name = "self._toml_obj"
 
                 if self.DOT not in string:
-
-                    if ((name + f"['{string[2:-2]}']") in globals()) or (f"['{string[2:-2]}']" in eval(f"'{name}.keys()'")):
+                    if ((name + f"['{string[1:-1]}']") in globals()) or (f"['{string[1:-1]}']" in eval(f"'{name}.keys()'")):
                         pass
                     else:
-                        exec(f"{name}['{string[2:-2]}'] = dict()")
-
-                    name += f"['{string[2:-2]}']"
+                        exec(f"{name}['{string[1:-1]}'] = dict()")
+                    name += f"['{string[1:-1]}']"
 
                 elif self.DOT in string:
-                    lst = string[2:-2].split(self.DOT)
+                    lst = string[1:-1].split(self.DOT)
 
                     for i in range(len(lst)):
-
                         if ((name + f"['{lst[i]}']") in globals()) or (f"['{lst[i]}']" in eval(f"{name}").keys()):
                             continue
                         else:
                             exec(f"{name}['{lst[i]}'] = dict()")
                         name += f"['{lst[i]}']"
-
             else:
                 i = string.find("=")
                 exec(f"{name}[\"{string[:i]}\"] = {string[i+1:]}")
 
 
-    def get_obj(self) -> str or dict:
-        if not(self.toml_obj):
+    def deserialization(self, filename) -> None:
+        object = self._toml_obj
+
+        with open(filename, 'wb') as file:
+            obj_str = str(object)
+            obj_bytes = obj_str.encode('utf-8')
+            file.write(len(obj_bytes).to_bytes(8, byteorder='little'))
+            file.write(obj_bytes)
+
+
+    def serialization(filename) -> dict:
+        with open(filename, 'rb') as file:
+            data_len = int.from_bytes(file.read(8), byteorder='little')
+            obj_bytes = file.read(data_len)
+            obj_str = obj_bytes.decode('utf-8')
+
+        return eval(obj_str)
+
+
+    def get_obj(self) -> dict:
+        if not(self._toml_obj):
             raise ValueError("Объекта не существует, или объект пуст")
-        return self.toml_obj
+        return self._toml_obj
