@@ -22,7 +22,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>11:30-13:00</div> 2, 4, 6, 8, 10, 12, 14, 16 "
+          div = {text = "11:30-13:00"}
+          text = " 2, 4, 6, 8, 10, 12, 14, 16 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -54,7 +55,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>11:30-13:00</div> 2, 4, 6, 8, 10, 12, 14, 16 "
+          div = {text = "11:30-13:00"}
+          text = " 2, 4, 6, 8, 10, 12, 14, 16 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -103,7 +105,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>8:10-9:40</div> 6, 7, 10, 11, 12, 13, 14, 15 "
+          div = {text = "8:10-9:40"}
+          text = " 6, 7, 10, 11, 12, 13, 14, 15 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -135,7 +138,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>9:50-11:20</div> 6, 7, 10, 11, 12, 13, 14, 15 "
+          div = {text = "9:50-11:20"}
+          text = " 6, 7, 10, 11, 12, 13, 14, 15 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -167,7 +171,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>11:30-13:00</div> 2, 4, 6, 8, 10, 12, 14, 16 "
+          div = {text = "11:30-13:00"}
+          text = " 2, 4, 6, 8, 10, 12, 14, 16 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -199,7 +204,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>11:30-13:00</div> 3, 5, 7, 9, 11, 13, 15, 17 "
+          div = {text = "11:30-13:00"}
+          text = " 3, 5, 7, 9, 11, 13, 15, 17 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -231,7 +237,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>13:30-15:00</div> 2, 4, 6, 8, 10, 12, 14, 16 "
+          div = {text = "13:30-15:00"}
+          text = " 2, 4, 6, 8, 10, 12, 14, 16 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]
@@ -263,7 +270,8 @@ class = "rasp_tabl_day"
         [[div.table.tbody.tr.td]]
         class = "time"
           [div.table.tbody.tr.td.span]
-          text = " <div>13:30-15:00</div> 3, 5, 7, 9, 11, 13, 15, 17 "
+          div = {text = "13:30-15:00"}
+          text = " 3, 5, 7, 9, 11, 13, 15, 17 "
 
         [[div.table.tbody.tr.td]]
           [div.table.tbody.tr.td.span]

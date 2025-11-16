@@ -10,7 +10,9 @@ class TOML:
     DOT = "."
     END_OF_LINE = "\n"
 
-    BRACES = [LEFT_CURLY_BRACE, RIGHT_CURLY_BRACE, LEFT_SQARE_BRACKET, RIGHT_SQARE_BRACKET]
+    SQ_BRACES = [LEFT_SQARE_BRACKET, RIGHT_SQARE_BRACKET]
+    CR_BRACES = [LEFT_CURLY_BRACE, RIGHT_CURLY_BRACE]
+    BRACES = SQ_BRACES + CR_BRACES
 
     _toml_obj = dict()
 
@@ -30,48 +32,52 @@ class TOML:
         return lst
 
 
-    def _array_of_tables(self, string, name) -> None:
+    def _array_of_tables(self, string, name) -> str:
         name = "self._toml_obj"
+        lst = string[2:-2].split(self.DOT)
 
-        if self.DOT not in string:
-            if ((name + f"['{string[1:-1]}']") in globals()) or (string[1:-1] in eval(name).keys()):
-                pass
+        for i in range(len(lst)):
+            if lst[i] in eval(name).keys():
+                if i == (len(lst) - 1):
+                    eval(name)[lst[i]].append(dict())
             else:
-                exec(f"{name}['{string[1:-1]}'] = dict()")
-            name += f"['{string[1:-1]}']"
-
-        elif self.DOT in string:
-            lst = string[1:-1].split(self.DOT)
-
-            for i in range(len(lst)):
-                if ((name + f"['{lst[i]}']") in globals()) or (lst[i] in eval(name).keys()):
-                    pass
+                if i == (len(lst) - 1):
+                    eval(name)[lst[i]] = list()
+                    eval(name)[lst[i]].append(dict())
                 else:
-                    exec(f"{name}['{lst[i]}'] = dict()")
+                    if type(eval(name)).__name__ == "dict":
+                        eval(name)[lst[i]] = dict()
+                    elif type(eval(name)).__name__ == "list":
+                        eval(name)[lst[i]].append(dict())
+
+            if type(eval(name)[lst[i]]).__name__ == "dict":
                 name += f"['{lst[i]}']"
+            elif type(eval(name)[lst[i]]).__name__ == "list":
+                name += f"['{lst[i]}'][-1]"
 
         return name
 
 
-    def _table(self, string, name) -> None:
+    def _table(self, string, name) -> str:
         name = "self._toml_obj"
+        lst = string[1:-1].split(self.DOT)
 
-        if self.DOT not in string:
-            if ((name + f"['{string[1:-1]}']") in globals()) or (string[1:-1] in eval(name).keys()):
+        for i in range(len(lst)):
+            if lst[i] in eval(name).keys():
                 pass
             else:
-                exec(f"{name}['{string[1:-1]}'] = dict()")
-            name += f"['{string[1:-1]}']"
-
-        elif self.DOT in string:
-            lst = string[1:-1].split(self.DOT)
-
-            for i in range(len(lst)):
-                if ((name + f"['{lst[i]}']") in globals()) or (lst[i] in eval(name).keys()):
-                    pass
+                if i == (len(lst) - 1):
+                    eval(name)[lst[i]] = dict()
                 else:
-                    exec(f"{name}['{lst[i]}'] = dict()")
+                    if type(eval(name)).__name__ == "dict":
+                        eval(name)[lst[i]] = dict()
+                    elif type(eval(name)).__name__ == "list":
+                        pass
+
+            if type(eval(name)[lst[i]]).__name__ == "dict":
                 name += f"['{lst[i]}']"
+            elif type(eval(name)[lst[i]]).__name__ == "list":
+                name += f"['{lst[i]}'][-1]"
 
         return name
 
@@ -81,10 +87,26 @@ class TOML:
         exec(f"{name}[\'{string[:i]}\'] = {string[i+1:]}")
 
 
+    def _key_value_create(self, string) -> dict:
+        lst = [line.strip() for line in string.split(',')]
+        out = dict()
+
+        for line in lst:
+            i = line.find("=")
+            out[line[:i]] = line[i+1:].replace('"', '')
+
+        return out
+
+
+    def _inline_table(self, string, name) -> None:
+        i = string.find("=")
+        exec(f"{name}[\'{string[:i]}\'] = {self._key_value_create(string[i+2:-1])}")
+
+
     def _type_def(self, string, name) -> None:
-        if ((string[:1] == self.LEFT_SQARE_BRACKET * 1) and
-            (string[-1:] == self.RIGHT_SQARE_BRACKET * 1) and
-            (string.count(self.LEFT_SQARE_BRACKET) == string.count(self.RIGHT_SQARE_BRACKET) == 1)):
+        if ((string[:2] == self.LEFT_SQARE_BRACKET * 2) and
+            (string[-2:] == self.RIGHT_SQARE_BRACKET * 2) and
+            (string.count(self.LEFT_SQARE_BRACKET) == string.count(self.RIGHT_SQARE_BRACKET) == 2)):
 
             name = self._array_of_tables(string, name)
 
@@ -96,9 +118,16 @@ class TOML:
 
         elif ((string[0] not in self.BRACES) and
               (string[-1] not in self.BRACES) and
-              (self.EQUAL_SIGN.strip() in string)):
+              (self.EQUAL_SIGN.strip() in string) and
+              (self.QUOTATION_MARK in string)):
 
             self._key_value(string, name)
+
+        elif ((string[0] not in self.SQ_BRACES) and
+              (string[-1] not in self.SQ_BRACES) and
+              (self.EQUAL_SIGN.strip() in string)):
+
+            self._inline_table(string, name)
 
         return name
 
