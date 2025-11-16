@@ -1,1 +1,3 @@
-# info_lab4
+<img width="1280" height="1069" alt="изображение" src="https://github.com/user-attachments/assets/a9769b09-d212-4b0e-a8b9-fcb9b98dd55d" />
+
+# надеюсь я смогу сдать эту лабу хоть когда-нибудь...

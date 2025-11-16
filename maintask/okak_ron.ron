@@ -1,0 +1,436 @@
+RON(
+    h4__1: (
+        class: "rasp_day_mobile",
+        text: "Понедельник",
+    ),
+    div__1: (
+        class: "rasp_tabl_day",
+        table: (
+            id: "3day",
+            class: "rasp_tabl",
+            border: "0",
+            cellpadding: "0",
+            cellspacing: "0",
+            tbody: (
+                tr: [
+                    (
+                        th: (
+                            class: "day",
+                            span: (
+                                text: "Пн",
+                            ),
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "11:30-13:00",
+                                    ),
+                                    text: " 2, 4, 6, 8, 10, 12, 14, 16 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ КСиТ 2",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1216/0 (усл) ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "ул.Ломоносова, д.9, лит. М",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лек) : Актовый зал",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "11:30-13:00",
+                                    ),
+                                    text: " 2, 4, 6, 8, 10, 12, 14, 16 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ СиППО 1",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1216/0 (усл) ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "ул.Ломоносова, д.9, лит. М",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лек) : Актовый зал",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),
+    ),
+    h4__2: (
+        class: "rasp_day_mobile",
+        text: "Суббота",
+    ),
+    div__2: (
+        class: "rasp_tabl_day",
+        table: (
+            id: "6day",
+            class: "rasp_tabl",
+            border: "0",
+            cellpadding: "0",
+            cellspacing: "0",
+            tbody: (
+                tr: [
+                    (
+                        th: (
+                            class: "day",
+                            span: (
+                                text: "Сб",
+                            ),
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "8:10-9:40",
+                                    ),
+                                    text: " 6, 7, 10, 11, 12, 13, 14, 15 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "PRLCOMP 1",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: " Parallel Computing / Параллельные вычисления (Лек) ",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "9:50-11:20",
+                                    ),
+                                    text: " 6, 7, 10, 11, 12, 13, 14, 15 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "PRLCOMP 1.1",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: " Parallel Computing / Параллельные вычисления (Лаб) ",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "11:30-13:00",
+                                    ),
+                                    text: " 2, 4, 6, 8, 10, 12, 14, 16 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ (Р3106) 1.1",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лаб)",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "11:30-13:00",
+                                    ),
+                                    text: " 3, 5, 7, 9, 11, 13, 15, 17 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ (Р3107) 1.2",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лаб)",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "13:30-15:00",
+                                    ),
+                                    text: " 2, 4, 6, 8, 10, 12, 14, 16 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ (Р3106) 1.1",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лаб)",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                    (
+                        th: (
+                            class: "day",
+                        ),
+                        td: [
+                            (
+                                class: "time",
+                                span: (
+                                    div: (
+                                        text: "13:30-15:00",
+                                    ),
+                                    text: " 3, 5, 7, 9, 11, 13, 15, 17 ",
+                                ),
+                            ),
+                            (
+                                span: (
+                                    text: "ИНФОРМ (Р3107) 1.2",
+                                ),
+                            ),
+                            (
+                                class: "room",
+                                dl: (
+                                    dd: (
+                                        text: "1333 ауд.",
+                                    ),
+                                    dt: (
+                                        i: (
+                                            class: "fa fa-map-marker",
+                                        ),
+                                        span: (
+                                            text: "Кронверкский пр., д.49, лит.А",
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson",
+                                dl: (
+                                    dd: (
+                                        text: "Информатика (Лаб)",
+                                    ),
+                                ),
+                            ),
+                            (
+                                class: "lesson-format",
+                                text: "Очно - дистанционный",
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),
+    ),
+)

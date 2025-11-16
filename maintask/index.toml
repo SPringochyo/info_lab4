@@ -1,0 +1,297 @@
+[h4__1]
+class = "rasp_day_mobile"
+text = "Понедельник"
+
+[div__1]
+class = "rasp_tabl_day"
+
+	[div__1.table]
+	id = "3day"
+	class = "rasp_tabl"
+	border = "0"
+	cellpadding = "0"
+	cellspacing = "0"
+
+		[div__1.table.tbody]
+		[[div__1.table.tbody.tr]]
+		[div__1.table.tbody.tr.th]
+				class = "day"
+					[div__1.table.tbody.tr.th.span]
+					text = "Пн"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "time"
+					[div__1.table.tbody.tr.td.span]
+					div = {text = "11:30-13:00"}
+					text = " 2, 4, 6, 8, 10, 12, 14, 16 "
+
+				[[div__1.table.tbody.tr.td]]
+				[div__1.table.tbody.tr.td.span]
+					text = "ИНФОРМ КСиТ 2"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "room"
+					[div__1.table.tbody.tr.td.dl.dd]
+					text = "1216/0 (усл) ауд."
+					[div__1.table.tbody.tr.td.dl.dt]
+						[div__1.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__1.table.tbody.tr.td.dl.dt.span]
+						text = "ул.Ломоносова, д.9, лит. М"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "lesson"
+					[div__1.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лек) : Актовый зал"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__1.table.tbody.tr]]
+			[div__1.table.tbody.tr.th]
+				class = "day"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "time"
+					[div__1.table.tbody.tr.td.span]
+					div = {text = "11:30-13:00"}
+					text = " 2, 4, 6, 8, 10, 12, 14, 16 "
+
+				[[div__1.table.tbody.tr.td]]
+				[div__1.table.tbody.tr.td.span]
+					text = "ИНФОРМ СиППО 1"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "room"
+					[div__1.table.tbody.tr.td.dl.dd]
+					text = "1216/0 (усл) ауд."
+					[div__1.table.tbody.tr.td.dl.dt]
+						[div__1.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__1.table.tbody.tr.td.dl.dt.span]
+						text = "ул.Ломоносова, д.9, лит. М"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "lesson"
+					[div__1.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лек) : Актовый зал"
+
+				[[div__1.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+[h4__2]
+class = "rasp_day_mobile"
+text = "Суббота"
+
+[div__2]
+class = "rasp_tabl_day"
+
+	[div__2.table]
+	id = "6day"
+	class = "rasp_tabl"
+	border = "0"
+	cellpadding = "0"
+	cellspacing = "0"
+
+		[div__2.table.tbody]
+		[[div__2.table.tbody.tr]]
+		[div__2.table.tbody.tr.th]
+				class = "day"
+					[div__2.table.tbody.tr.th.span]
+					text = "Сб"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "8:10-9:40"}
+					text = " 6, 7, 10, 11, 12, 13, 14, 15 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "PRLCOMP 1"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = " Parallel Computing / Параллельные вычисления (Лек) "
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__2.table.tbody.tr]]
+			[div__2.table.tbody.tr.th]
+				class = "day"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "9:50-11:20"}
+					text = " 6, 7, 10, 11, 12, 13, 14, 15 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "PRLCOMP 1.1"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = " Parallel Computing / Параллельные вычисления (Лаб) "
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__2.table.tbody.tr]]
+			[div__2.table.tbody.tr.th]
+				class = "day"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "11:30-13:00"}
+					text = " 2, 4, 6, 8, 10, 12, 14, 16 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "ИНФОРМ (Р3106) 1.1"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лаб)"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__2.table.tbody.tr]]
+			[div__2.table.tbody.tr.th]
+				class = "day"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "11:30-13:00"}
+					text = " 3, 5, 7, 9, 11, 13, 15, 17 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "ИНФОРМ (Р3107) 1.2"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лаб)"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__2.table.tbody.tr]]
+			[div__2.table.tbody.tr.th]
+				class = "day"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "13:30-15:00"}
+					text = " 2, 4, 6, 8, 10, 12, 14, 16 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "ИНФОРМ (Р3106) 1.1"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лаб)"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
+
+			[[div__2.table.tbody.tr]]
+			[div__2.table.tbody.tr.th]
+				class = "day"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "time"
+					[div__2.table.tbody.tr.td.span]
+					div = {text = "13:30-15:00"}
+					text = " 3, 5, 7, 9, 11, 13, 15, 17 "
+
+				[[div__2.table.tbody.tr.td]]
+				[div__2.table.tbody.tr.td.span]
+					text = "ИНФОРМ (Р3107) 1.2"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "room"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "1333 ауд."
+					[div__2.table.tbody.tr.td.dl.dt]
+						[div__2.table.tbody.tr.td.dl.dt.i]
+						class = "fa fa-map-marker"
+						[div__2.table.tbody.tr.td.dl.dt.span]
+						text = "Кронверкский пр., д.49, лит.А"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson"
+					[div__2.table.tbody.tr.td.dl.dd]
+					text = "Информатика (Лаб)"
+
+				[[div__2.table.tbody.tr.td]]
+				class = "lesson-format"
+				text = "Очно - дистанционный"
