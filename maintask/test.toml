@@ -1,3 +1,27 @@
+[h4__1]
+class = "rasp_day_mobile"
+text = "Понедельник"
 
-[div]
-sdf = 2
+[h4__2]
+class = "rasp_day_mobile"
+text = "Суббота"
+
+[div__1]
+class = "rasp_tabl_day"
+
+	[div__1.table]
+	id = "3day"
+	class = "rasp_tabl"
+	border = "0"
+	cellpadding = "0"
+	cellspacing = "0"
+
+[div__2]
+class = "rasp_tabl_day"
+
+	[div__2.table]
+	id = "6day"
+	class = "rasp_tabl"
+	border = "0"
+	cellpadding = "0"
+	cellspacing = "0"
