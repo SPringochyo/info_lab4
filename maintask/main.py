@@ -1,6 +1,7 @@
 from SPtoml import TOML
-from SPron import RON
+from SPxml import XML
 
-TOML("/home/spring/Documents/projects/info_lab4/maintask/test.toml").auto_deserialization()
-some = RON("/home/spring/Documents/projects/info_lab4/maintask/test.bin")
+TOML("/home/spring/Documents/projects/info_lab4/maintask/index.toml").auto_deserialization()
+some = XML("/home/spring/Documents/projects/info_lab4/maintask/index.bin")
 some.write("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+print(some.get_obj())
