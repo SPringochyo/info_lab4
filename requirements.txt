@@ -1,0 +1,7 @@
+config-parser==0.0.1
+configparser==7.2.0
+dict2xml==1.7.7
+pyron==0.2
+PyYAML==6.0.3
+ron==0.0.1
+xml-serializer==1.0.5
